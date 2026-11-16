@@ -3,6 +3,7 @@ package org.hisp.dhis.lib.expression
 import org.hisp.dhis.lib.expression.spi.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 /**
  * Tests all forms of [DataItem]s are correctly transformed from an expression to an AST and into a
@@ -162,6 +163,45 @@ internal class DataItemExpressionTest {
                     DataItemType.ORG_UNIT_GROUP,
                     ID(IDType.OrganisationUnitGroupUID, "u1234567890"))),
             evaluate("OUG{u1234567890}"))
+    }
+
+    @Test
+    fun testValidationRule() {
+        assertEquals(
+            setOf(
+                DataItem(
+                    DataItemType.VALIDATION_RULE,
+                    ID(IDType.ValidationRuleUID, "u1234567890"))),
+            evaluate("VR{u1234567890}"))
+    }
+
+    @Test
+    fun testValidationRule_Predictor() {
+        assertEquals(
+            setOf(
+                DataItem(
+                    DataItemType.VALIDATION_RULE,
+                    ID(IDType.ValidationRuleUID, "u1234567890"))),
+            Expression("VR{u1234567890}", ExpressionMode.PREDICTOR_GENERATOR_EXPRESSION).collectDataItems())
+    }
+
+    @Test
+    fun testValidationRule_OnlyInIndicatorsAndPredictors() {
+        for (mode in listOf(
+            ExpressionMode.VALIDATION_RULE_EXPRESSION,
+            ExpressionMode.PROGRAM_INDICATOR_EXPRESSION,
+            ExpressionMode.RULE_ENGINE_CONDITION)) {
+            val e = runCatching { Expression("VR{u1234567890}", mode) }.exceptionOrNull()
+            assertTrue(e?.message?.contains("Unknown function or constant: 'VR'") == true, "$mode: ${e?.message}")
+        }
+    }
+
+    @Test
+    fun testValidationRule_ProgramVariableUnaffected() {
+        // VR shares its first letter with V (program variables), as VAR (Android custom intents) does
+        assertEquals(
+            setOf("event_date"),
+            Expression("V{event_date}", ExpressionMode.PROGRAM_INDICATOR_EXPRESSION).collectProgramVariablesNames())
     }
 
     @Test

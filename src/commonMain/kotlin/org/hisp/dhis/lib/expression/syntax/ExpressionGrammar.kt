@@ -166,6 +166,7 @@ object ExpressionGrammar {
     private val R_BRACE = item(DataItemType.REPORTING_RATE, UID, IDENTIFIER.by(Node.Factory.new(::ReportingRateTypeNode)))
     private val OUG_BRACE = item(DataItemType.ORG_UNIT_GROUP, UID)
     private val N_BRACE = item(DataItemType.INDICATOR, UID)
+    private val VR_BRACE = item(DataItemType.VALIDATION_RULE, UID)
     private val V_BRACE = variable(DataItemType.PROGRAM_VARIABLE, IDENTIFIER.by(Node.Factory.new(::ProgramVariableNode)))
     private val ACI_BRACE = variable(DataItemType.ANDROID_CUSTOM_INTENT, IDENTIFIER.by(Node.Factory.new(::AndroidCustomIntentNode)))
     private val CommonDataItems = listOf(HASH_BRACE, A_BRACE, C_BRACE, D_BRACE, I_BRACE, R_BRACE, OUG_BRACE)
@@ -185,7 +186,7 @@ object ExpressionGrammar {
         ValidationRuleExpressionMode,
         CommonAggregationFunctions,
         PredictorAggregationFunctions,
-        listOf(MIN_DATE, MAX_DATE))
+        listOf(VR_BRACE, MIN_DATE, MAX_DATE))
 
     val IndicatorExpressionMode = concat(
         CommonBooleanFunctions,
@@ -193,7 +194,7 @@ object ExpressionGrammar {
         CommonSameFunctions,
         CommonDataItems,
         CommonConstants,
-        listOf(N_BRACE, SUB_EXPRESSION, AGGREGATION_TYPE, MIN_DATE, MAX_DATE, PERIOD_OFFSET, YEAR_TO_DATE))
+        listOf(N_BRACE, VR_BRACE, SUB_EXPRESSION, AGGREGATION_TYPE, MIN_DATE, MAX_DATE, PERIOD_OFFSET, YEAR_TO_DATE))
 
     val PredictorSkipTestMode = PredictorExpressionMode
 
