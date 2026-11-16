@@ -1402,6 +1402,7 @@ public final class org/hisp/dhis/lib/expression/spi/DataItemType : java/lang/Enu
 	public static final field PROGRAM_INDICATOR Lorg/hisp/dhis/lib/expression/spi/DataItemType;
 	public static final field PROGRAM_VARIABLE Lorg/hisp/dhis/lib/expression/spi/DataItemType;
 	public static final field REPORTING_RATE Lorg/hisp/dhis/lib/expression/spi/DataItemType;
+	public static final field VALIDATION_RULE Lorg/hisp/dhis/lib/expression/spi/DataItemType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun getType (II)Lorg/hisp/dhis/lib/expression/spi/IDType;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hisp/dhis/lib/expression/spi/DataItemType;
@@ -1588,6 +1589,7 @@ public final class org/hisp/dhis/lib/expression/spi/IDType : java/lang/Enum {
 	public static final field ProgramUID Lorg/hisp/dhis/lib/expression/spi/IDType;
 	public static final field ProgramVariableName Lorg/hisp/dhis/lib/expression/spi/IDType;
 	public static final field ReportingRateType Lorg/hisp/dhis/lib/expression/spi/IDType;
+	public static final field ValidationRuleUID Lorg/hisp/dhis/lib/expression/spi/IDType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun isUID ()Z
 	public static fun valueOf (Ljava/lang/String;)Lorg/hisp/dhis/lib/expression/spi/IDType;

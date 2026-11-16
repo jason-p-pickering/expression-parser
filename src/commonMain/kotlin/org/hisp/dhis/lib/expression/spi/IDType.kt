@@ -20,6 +20,7 @@ enum class IDType {
     ProgramIndicatorUID,
     ProgramVariableName,
     ProgramStageUID,
+    ValidationRuleUID,
 
     // not a UID but an Identifier
     ReportingRateType;

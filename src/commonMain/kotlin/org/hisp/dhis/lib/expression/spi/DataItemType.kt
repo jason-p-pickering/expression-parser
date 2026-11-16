@@ -37,7 +37,10 @@ enum class DataItemType(internal val symbol: String, private val parameterTypes:
     ORG_UNIT_GROUP("OUG", IDType.OrganisationUnitGroupUID),
     REPORTING_RATE("R", IDType.DataSetUID, IDType.ReportingRateType),
     PROGRAM_VARIABLE("V", IDType.ProgramVariableName),
-    ANDROID_CUSTOM_INTENT("VAR", IDType.AndroidCustomIntent);
+    ANDROID_CUSTOM_INTENT("VAR", IDType.AndroidCustomIntent),
+
+    // (violation count of a validation rule; 'V' was already taken for program variables)
+    VALIDATION_RULE("VR", IDType.ValidationRuleUID);
 
     constructor(symbol: String, vararg parameterTypes: IDType) : this(
         symbol, listOf<List<IDType>>(listOf<IDType>(*parameterTypes)))
